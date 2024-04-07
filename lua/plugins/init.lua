@@ -82,6 +82,9 @@ local default_plugins = {
     opts = function()
       return require "plugins.configs.treesitter"
     end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup(opts)
@@ -131,6 +134,7 @@ local default_plugins = {
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "mason")
       require("mason").setup(opts)
+      require("mason-lspconfig").setup()
 
       -- custom nvchad cmd to install all mason binaries listed
       vim.api.nvim_create_user_command("MasonInstallAll", function()

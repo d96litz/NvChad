@@ -10,7 +10,7 @@ local options = {
 		html = { "prettier" },
 
 		sh = { "shfmt" },
-    elixir = { "mix" }
+    elixir = { "mix" },
 	},
 
   -- adding same formatter for multiple filetypes can look too much work for some

@@ -100,18 +100,16 @@ local default_plugins = {
       vim.api.nvim_create_autocmd({ "BufRead" }, {
         group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
         callback = function()
-          vim.fn.jobstart({"git", "-C", vim.loop.cwd(), "rev-parse"},
-            {
-              on_exit = function(_, return_code)
-                if return_code == 0 then
-                  vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
-                  vim.schedule(function()
-                    require("lazy").load { plugins = { "gitsigns.nvim" } }
-                  end)
-                end
+          vim.fn.jobstart({ "git", "-C", vim.loop.cwd(), "rev-parse" }, {
+            on_exit = function(_, return_code)
+              if return_code == 0 then
+                vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
+                vim.schedule(function()
+                  require("lazy").load { plugins = { "gitsigns.nvim" } }
+                end)
               end
-            }
-          )
+            end,
+          })
         end,
       })
     end,
@@ -275,7 +273,6 @@ local default_plugins = {
     end,
   },
 }
-
 local config = require("core.utils").load_config()
 
 if #config.plugins > 0 then

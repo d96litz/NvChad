@@ -5,16 +5,17 @@ local M = {}
 local highlights = require "custom.highlights"
 
 M.ui = {
-  theme = "ayu_dark",
-  theme_toggle = { "ayu_dark", "one_light" },
+  theme = "onedark",
+  theme_toggle = { "onedark", "one_light" },
+  transparency = true,
 
   hl_override = highlights.override,
   hl_add = highlights.add,
   statusline = {
-    theme = "vscode_colored",
+    theme = "default",
 
-    separator_style = "arrow",
-  }
+    separator_style = "default",
+  },
 }
 
 M.plugins = "custom.plugins"

@@ -11,7 +11,7 @@ require("conform").setup {
     erb = { "prettier" },
     slim = { "prettier" },
     svelte = { "prettier" },
-    json = { "prettier"},
+    json = { "prettier"}
 
     sh = { "shfmt" },
     elixir = { "mix" },

@@ -100,3 +100,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- -- Map <leader>tl to run Rspec for the current line
 -- vim.api.nvim_set_keymap("n", "<leader>tl", [[:!rspec %:<C-r>=line('.')<CR><CR>]], { noremap = true, silent = true })
 vim.g.copilot_no_tab_map = true
+
+vim.api.nvim_set_keymap("i", "<M-BS>", "<C-W>", { noremap = true, silent = true })
+
+vim.opt.conceallevel = 2
+
+require "custom.copypaste"

@@ -182,6 +182,69 @@ local plugins = {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
   { "echasnovski/mini.nvim", version = "*" },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = false,
+    ft = "markdown",
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- event = {
+    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+    --   -- refer to `:h file-pattern` for more examples
+    --   "BufReadPre path/to/my-vault/*.md",
+    --   "BufNewFile path/to/my-vault/*.md",
+    -- },
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp", -- Optional, for autocompletion.
+      -- "nvim-telescope/telescope.nvim", -- Optional, for search and quick actions.
+      "ibhagwan/fzf-lua",
+      "nvim-treesitter/nvim-treesitter", -- Optional, for syntax highlighting.
+
+      -- see below for full list of optional dependencies 👇
+    },
+    opts = {
+      workspaces = {
+        -- {
+        --   name = "personal",
+        --   path = "~/vaults/personal",
+        -- },
+        {
+          name = "work",
+          path = "~/i22 Dropbox/Dario Litz/Notizen",
+        },
+      },
+      daily_notes = {
+        -- Optional, if you keep daily notes in a separate directory.
+        folder = "Daily Notes",
+      },
+      -- see below for full list of options 👇
+    },
+  },
+  {
+    "hat0uma/csvview.nvim",
+    ---@module "csvview"
+    ---@type CsvView.Options
+    opts = {
+      parser = { comments = { "#", "//" } },
+      keymaps = {
+        -- Text objects for selecting fields
+        textobject_field_inner = { "if", mode = { "o", "x" } },
+        textobject_field_outer = { "af", mode = { "o", "x" } },
+        -- Excel-like navigation:
+        -- Use <Tab> and <S-Tab> to move horizontally between fields.
+        -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+        -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+        jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+        jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+        jump_next_row = { "<Enter>", mode = { "n", "v" } },
+        jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+      },
+    },
+    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+  },
   -- {
   --   "m4xshen/hardtime.nvim",
   --   lazy = false,
